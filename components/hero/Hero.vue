@@ -3,10 +3,10 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Free ecommerce template for Vue.js projects
+          ¡Reserva, alquila y juega con SportQuilla!
         </h1>
         <h2 class="subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          No te quedes sin conocer la nueva forma de hacer deporte en Barranquilla.
         </h2>
       </div>
     </div>
