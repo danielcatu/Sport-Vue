@@ -2,10 +2,10 @@
   <div class="footer">
     <div class="columns container">
       <div class="column">
-        <p>Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</p>
+        <p>Proyecto de Investigación y Desarrollo.<br>Diseño de Software I.</p>
       </div>
     <div class="column has-text-right">
-      <p>Vuemmerce | Made with ❤</p>
+      <p>Universidad del Norte | 2019</p>
     </div>
     </div>
   </div>

@@ -22,14 +22,14 @@
 		</div>
 		<div v-if="isUserLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">
-			Welcome {{ getUserName }}
+			Welcome, {{ getUserName }}.
 			</a>
 			<div class="navbar-dropdown is-boxed">
-				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
-					{{ Editproflelabel }}
+				<nuxt-link class="navbar-item" :to="{ name: 'user-profile' }">
+					{{ userProfileLabel }}
 				</nuxt-link>
 				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
-					{{ wishlistLabel }}
+					{{ userWishlistLabel }}
 				</nuxt-link>
 				<hr class="navbar-divider">
 				<a class="navbar-item" @click="logout">
@@ -45,11 +45,11 @@ export default {
 	name: 'VmMenu',
 	data () {
 		return {
-			Editproflelabel: 'Edit Profile',
-			wishlistLabel: 'Wishlist',
-			logoutLabel: 'Log out',
+			signupLabel: 'Sign up',
 			loginLabel: 'Log in',
-			signupLabel: 'Sign up'
+			logoutLabel: 'Log out',
+			userProfileLabel: 'Profile',
+			userWishlistLabel: 'Wishlist'
 		}
 	},
 

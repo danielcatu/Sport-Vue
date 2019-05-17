@@ -15,7 +15,8 @@
 
 <style lang="scss" scoped>
     .hero {
-      background: rgb(81, 186, 252);
+      background-image: url('../../static/sportquilla-land.png'); background-position: right; background-size: cover; 
+      background-color: deepskyblue;
     }
     h1, h2 {
       color: #fff;

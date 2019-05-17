@@ -53,13 +53,13 @@
             <div class="level-item has-text-centered">
               <div>
                 <p class="title">Welcome back!</p>
-                <p class="heading">Now you are logged in</p>
+                <p class="heading">Now you are logged in.</p>
               </div>
             </div>
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button v-if="!isUserLoggedIn" type="submit" class="button is-info">{{ primaryBtnLabel }}</button>
+          <button v-if="!isUserLoggedIn" type="submit" class="button is-info" @click="izi()">{{ primaryBtnLabel }}</button>
           <button v-if="isUserLoggedIn" type="button" class="button is-info" @click="closeModal">{{ btnLoggedInLabel }}</button>
         </footer>
       </form>
@@ -69,7 +69,7 @@
 
 <script>
 import { isValidEmail } from '@/assets/validators';
-
+import IdentifierService from '@/services/IdentifierService'
 export default {
   name: 'login',
 
@@ -110,12 +110,19 @@ export default {
     },
     checkForm (e) {
       e.preventDefault();
-
-      if (this.email && this.password) {
+       if (this.email && this.password) {
         this.highlightEmailWithError = false;
         this.highlightPasswordWithError = false;
         this.isFormSuccess = true;
         this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+        login(this.email,this.password);
+       async function login(email,password) {
+        await IdentifierService.login({
+          email,
+          password
+        })
+       }
+
       }
 
       if (!this.email) {
@@ -151,6 +158,9 @@ export default {
       } else {
         this.highlightPasswordWithError = true;
       }
+    },
+    izi(){
+      console.log('mmm')
     }
   }
 };
