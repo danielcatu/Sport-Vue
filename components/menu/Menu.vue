@@ -26,6 +26,9 @@
 			</a>
 			<div class="navbar-dropdown is-boxed">
 				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
+					{{ Editproflelabel }}
+				</nuxt-link>
+				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
 					{{ wishlistLabel }}
 				</nuxt-link>
 				<hr class="navbar-divider">
@@ -42,6 +45,7 @@ export default {
 	name: 'VmMenu',
 	data () {
 		return {
+			Editproflelabel: 'Edit Profile',
 			wishlistLabel: 'Wishlist',
 			logoutLabel: 'Log out',
 			loginLabel: 'Log in',
