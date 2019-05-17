@@ -52,7 +52,7 @@
           <div v-if="isUserLoggedIn" class="level">
             <div class="level-item has-text-centered">
               <div>
-                <p class="title">Welcome back!</p>
+                <p class="title">Welcome back, {{ getUserName }}!</p>
                 <p class="heading">Now you are logged in.</p>
               </div>
             </div>
@@ -120,7 +120,10 @@ export default {
         await IdentifierService.login({
           email,
           password
-        })
+        }).then(function(response){
+    console.log(response.data); // ex.: { user: 'Your User'}
+    console.log(response.status); // ex.: 200
+  }); 
        }
 
       }
@@ -158,6 +161,15 @@ export default {
       } else {
         this.highlightPasswordWithError = true;
       }
+    },
+		getUserName () {
+			let name = this.$store.getters.getUserName;
+			
+			if (name === '') {
+				return 'User';
+			} else {
+				return name;
+			}
     },
     izi(){
       console.log('mmm')

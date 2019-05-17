@@ -159,6 +159,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+ .title{
+   margin-top: 10px;
+ }
+
  .details {
     cursor: pointer;
     position: absolute;

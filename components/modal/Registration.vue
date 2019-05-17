@@ -31,6 +31,42 @@
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
                   <input
+                    :class="[highlightLastNameWithError ? 'input is-danger' : 'input']"
+                    type="text"
+                    :placeholder="lastNamePlaceholder"
+                    v-model="lastName"
+                    @keyup="checkNameOnKeyUp(lastName)"
+                  >
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <span v-if="highlightLastNameWithError !== null" class="icon is-small is-right">
+                    <i :class="[highlightLastNameWithError ? 'fa fa-exclamation-circle' : 'fa fa-check']"></i>
+                  </span>
+                </p>
+                <p v-if="highlightLastNameWithError" class="help is-danger">{{ lastNameErrorLabel }}</p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input
+                    :class="[highlightPhoneWithError ? 'input is-danger' : 'input']"
+                    type="text"
+                    :placeholder="phonePlaceholder"
+                    v-model="phone"
+                    @keyup="checkNameOnKeyUp(phone)"
+                  >
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <span v-if="highlightPhoneWithError !== null" class="icon is-small is-right">
+                    <i :class="[highlightPhoneWithError ? 'fa fa-exclamation-circle' : 'fa fa-check']"></i>
+                  </span>
+                </p>
+                <p v-if="highlightPhoneWithError" class="help is-danger">{{ phoneErrorLabel }}</p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input
                     :class="[highlightEmailWithError ? 'input is-danger' : 'input']"
                     type="email"
                     :placeholder="emailPlaceholder"
@@ -104,7 +140,8 @@
 
 <script>
 import { isValidEmail } from '@/assets/validators';
-
+import IdentifierService from '@/services/IdentifierService'
+// import axios from 'axios'
 export default {
   name: 'registration',
 
@@ -115,19 +152,26 @@ export default {
       primaryBtnLabel: 'Sign up',
       btnRegisteredLabel: 'Close',
       namePlaceholder: 'Name*',
+      phonePlaceholder: 'Phone*',
+      lastNamePlaceholder: 'Last Name*',
       emailPlaceholder: 'Email*',
       passwordPlaceholder: 'Password*',
       repeatPasswordPlaceholder: 'Repeat Password*',
       notEqualErrorLabel: 'Passwords must be equal',
       passwordErrorLabel: 'Password required',
       nameErrorLabel: 'Name required',
+      lastNameErrorLabel: 'Last Name required', 
+      phoneErrorLabel: 'Phone required',     
       emailErrorLabel: 'Email required',
       emailNotValidLabel: 'Valid email required',
       name: '',
+      lastName: '',
       email: '',
       password: '',
       repeatPassword: '',
       highlightNameWithError: null,
+      highlightLastNameWithError: null,
+      highlightPhoneWithError: null,
       highlightEmailWithError: null,
       highlightPasswordWithError: null,
       highlightRepeatPasswordWithError: null,
@@ -155,19 +199,61 @@ export default {
     checkForm (e) {
       e.preventDefault();
 
-      if (this.name && this.email && this.password && this.repeatPassword) {
+      if (this.name && this.lastName && this.email && this.password && this.repeatPassword) {
         this.highlightEmailWithError = false;
         this.highlightPasswordWithError = false;
         this.isFormSuccess = true;
         this.$store.commit('setUserName', this.name);
         this.$store.commit('isUserSignedUp', this.isFormSuccess);
         this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+//         axios({
+//      headers: {
+//          'Access-Control-Allow-Origin':'http://localhost:8000'
+//      },
+//      method: 'POST',
+//      withCredentials: true,
+//      url: 'api/usuario/registro',
+//      data: {
+//           nombre: "Hurray",
+//            apellido: "Is it worked",
+//            email: "juancho@gmail.com",
+//            password: "12345678910"
+//      }
+// }).then (result => {
+//     console.log(result)
+//        })
+      login(this.email,this.password,this.name,this.lastName);
+       async function login(remail,rpassword,rname,rlastName) {
+        await IdentifierService.register({
+          nombre: rname,
+          apellido: rlastName,
+          email: remail, 
+          password: rpassword,
+          celular: 1233456777
+
+        }).then(function(response){
+          console.log(response); // ex.: { user: 'Your User'}
+          console.log(response.status); // ex.: 200
+        }); 
+       }
       }
 
       if (!this.name) {
         this.highlightNameWithError = true;
       } else {
         this.highlightNameWithError = false;
+      }
+
+      if (!this.lastName) {
+        this.highlightLastNameWithError = true;
+      } else {
+        this.highlightLastNameWithError = false;
+      }
+
+      if (!this.phone) {
+        this.highlightPhoneWithError = true;
+      } else {
+        this.highlightPhoneWithError = false;
       }
 
       if (!this.email) {
@@ -197,6 +283,20 @@ export default {
         this.highlightNameWithError = false;
       } else {
         this.highlightNameWithError = true;
+      }
+    },
+    checkLastNameOnKeyUp (nameValue) {
+      if (nameValue) {
+        this.highlightLastNameWithError = false;
+      } else {
+        this.highlightLastNameWithError = true;
+      }
+    },
+    checkPhoneOnKeyUp (nameValue) {
+      if (nameValue) {
+        this.highlightPhoneWithError = false;
+      } else {
+        this.highlightPhoneWithError = true;
       }
     },
     checkEmailOnKeyUp (emailValue) {

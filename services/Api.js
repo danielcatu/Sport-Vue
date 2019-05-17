@@ -1,5 +1,8 @@
 import axios from 'axios'
 
-export default function (){
-    return axios.get('http://localhost:8000')
-}
+export default () => {
+    return axios.create({
+      baseURL: `http://localhost:8000/`,
+      withCredentials: false
+    })
+  }

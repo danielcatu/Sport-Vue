@@ -2,20 +2,20 @@
   <div class="section">
     <h3 class="title">{{ getUserName }}.</h3>
     <div class="columns is-centered is-multiline">
-          <div class="col-xs-12 col-md-10 offset-md-1">
+          <div>
             <h4>{{ getUserName }}</h4>
             <p>{{ getUserBio }}</p>
             <div>
               <button
-                class="btn btn-sm btn-secondary action-btn"
-              >
-                <i class="ion-plus-round"></i> &nbsp;Unfollow
-                {{ getUserName }}
-              </button>
-              <button
                 class="btn btn-sm btn-outline-secondary action-btn"
               >
                 <i class="ion-plus-round"></i> &nbsp;Follow
+                {{ getUserName }}
+              </button>
+              <button
+                class="btn btn-sm btn-secondary action-btn"
+              >
+                <i class="ion-plus-round"></i> &nbsp;Unfollow
                 {{ getUserName }}
               </button>
             </div>
