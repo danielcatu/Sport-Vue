@@ -3,9 +3,10 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          ¡Reserva, alquila y juega con SportQuilla!
+          ¡Reserva, alquila y has más deporte con SportQuilla!
         </h1>
         <h2 class="subtitle">
+          Desde locaciones hasta equipos e instrumentos para cualquier deporte.<br>
           No te quedes sin conocer la nueva forma de hacer deporte en Barranquilla.
         </h2>
       </div>

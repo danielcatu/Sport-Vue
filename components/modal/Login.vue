@@ -52,14 +52,14 @@
           <div v-if="isUserLoggedIn" class="level">
             <div class="level-item has-text-centered">
               <div>
-                <p class="title">Welcome back, {{ getUserName }}!</p>
+                <p class="title">Welcome back, {{ getUserName }}.</p>
                 <p class="heading">Now you are logged in.</p>
               </div>
             </div>
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button v-if="!isUserLoggedIn" type="submit" class="button is-info" @click="izi()">{{ primaryBtnLabel }}</button>
+          <button v-if="!isUserLoggedIn" type="submit" class="button is-info" >{{ primaryBtnLabel }}</button>
           <button v-if="isUserLoggedIn" type="button" class="button is-info" @click="closeModal">{{ btnLoggedInLabel }}</button>
         </footer>
       </form>
@@ -70,18 +70,19 @@
 <script>
 import { isValidEmail } from '@/assets/validators';
 import IdentifierService from '@/services/IdentifierService'
+
 export default {
   name: 'login',
 
   data () {
     return {
-      modalTitle: 'Log in',
-      modalTitleLoggedIn: 'Welcome!',
-      primaryBtnLabel: 'Log in',
+      modalTitle: 'Iniciar Sesión',
+      modalTitleLoggedIn: '¡Bienvenido!',
+      primaryBtnLabel: 'Iniciar Sesión',
       emailRequiredLabel: 'Email required',
       passwordRequiredLabel: 'Password required',
       emailNotValidLabel: 'Valid email required',
-      btnLoggedInLabel: 'Close',
+      btnLoggedInLabel: 'Cerrar',
       emailPlaceholder: 'Your email',
       email: '',
       password: '',
@@ -101,6 +102,15 @@ export default {
       } else {
         return false;
       }
+    },
+		getUserName () {
+			let name = this.$store.getters.getUserName;
+			
+			if (name === '') {
+				return 'User';
+			} else {
+				return name;
+			}
     }
   },
 
@@ -108,22 +118,20 @@ export default {
     closeModal () {
       this.$store.commit('showLoginModal', false);
     },
-    checkForm (e) {
+    async checkForm (e) {
       e.preventDefault();
        if (this.email && this.password) {
-        this.highlightEmailWithError = false;
-        this.highlightPasswordWithError = false;
-        this.isFormSuccess = true;
-        this.$store.commit('isUserLoggedIn', this.isFormSuccess);
-        login(this.email,this.password);
-       async function login(email,password) {
-        await IdentifierService.login({
-          email,
-          password
-        }).then(function(response){
-    console.log(response.data); // ex.: { user: 'Your User'}
-    console.log(response.status); // ex.: 200
-  }); 
+       if((await login(this.email,this.password)).data.hasOwnProperty('success')){
+      this.highlightEmailWithError = false;
+      this.highlightPasswordWithError = false;
+      this.isFormSuccess = true;
+      this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+         }
+       async function login(remail,rpassword) {
+        return await IdentifierService.login({
+          email: remail,
+          password: rpassword
+        }); 
        }
 
       }
@@ -162,17 +170,11 @@ export default {
         this.highlightPasswordWithError = true;
       }
     },
-		getUserName () {
-			let name = this.$store.getters.getUserName;
-			
-			if (name === '') {
-				return 'User';
-			} else {
-				return name;
-			}
-    },
-    izi(){
-      console.log('mmm')
+    goodlogin(){
+      this.highlightEmailWithError = false;
+      this.highlightPasswordWithError = false;
+      this.isFormSuccess = true;
+      this.$store.commit('isUserLoggedIn', this.isFormSuccess);
     }
   }
 };

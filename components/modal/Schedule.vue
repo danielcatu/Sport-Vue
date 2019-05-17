@@ -29,7 +29,7 @@
               v-if="present"
               class="text-xs-center"
             >
-              Today
+              Hoy
             </template>
           </template>
 
@@ -37,7 +37,7 @@
             <div
               class="text-xs-center"
             >
-              Desocupado
+						<a @click="createReservation(fieldId, present, hour)">Reservar</a>
             </div>
           </template>
         </v-calendar>
@@ -55,6 +55,7 @@ export default {
     
 	data () {
 		return {
+			todayDate: new Date().toISOString().slice(0, 10),
 			modalTitle: 'Carrito de reservas',
 			picker: new Date().toISOString().substr(0, 10),
 			daycalendar: true
@@ -92,6 +93,14 @@ export default {
 		},
 		onPrevBtn () {
 			this.isCheckoutSection = false;
+		},
+		createReservation (fieldId, present, hour) {
+			if (this.isUserLoggedIn) {
+
+			} else {
+				this.$store.commit('showReserve', false);
+				this.$store.commit('showLoginModal', true);
+			}
 		},
 		izi(){
 			this.daycalendar=false;

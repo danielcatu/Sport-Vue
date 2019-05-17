@@ -147,10 +147,10 @@ export default {
 
   data () {
     return {
-      modalTitle: 'Sign up',
-      modalTitleRegistered: 'Welcome ',
-      primaryBtnLabel: 'Sign up',
-      btnRegisteredLabel: 'Close',
+      modalTitle: 'Crear Cuenta',
+      modalTitleRegistered: 'Bienvenido ',
+      primaryBtnLabel: 'Crear Cuenta',
+      btnRegisteredLabel: 'Cerrar',
       namePlaceholder: 'Name*',
       phonePlaceholder: 'Phone*',
       lastNamePlaceholder: 'Last Name*',

@@ -45,11 +45,11 @@ export default {
 	name: 'VmMenu',
 	data () {
 		return {
-			signupLabel: 'Sign up',
-			loginLabel: 'Log in',
-			logoutLabel: 'Log out',
-			userProfileLabel: 'Profile',
-			userWishlistLabel: 'Wishlist'
+			signupLabel: 'Crear cuenta',
+			loginLabel: 'Iniciar Sesión',
+			logoutLabel: 'Cerrar Sesión',
+			userProfileLabel: 'Perfil',
+			userWishlistLabel: 'Lista de Deseos'
 		}
 	},
 

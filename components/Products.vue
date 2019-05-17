@@ -2,14 +2,15 @@
   <div>
     <div class="card-image">
       <figure class="image is-4by3">
-        <img src="https://picsum.photos/1280/960/" alt="Placeholder image">
+        <img src="https://www.como.gov/parksandrec/wp-content/uploads/sites/25/2017/03/cosmo_soccer_13-15-300x225.jpg" alt="Placeholder image">
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ product.title }}</p>
+          <p class="title is-4">Cancha {{ product.id }}</p>
         </div>
+        
         <div>
           <button class="button is-small" :title="removeFromFavouriteLabel" v-show="product.isFavourite" @click="removeFromFavourite(product.id)">
             <span class="icon is-small">
@@ -24,23 +25,29 @@
         </div>
       </div>
       <div class="content is-clearfix">
-        <p>{{ product.description }}</p>
+        <p>Esta es la cancha {{ product.id }}</p>
+        <div class="media-content">
+          <p class="title is-4">{{ product.ubicacion }}</p>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">Horario 08:00 - 18:00</p>
+        </div>
         <div class="is-pulled-left">
-          <i v-if="product.ratings === 1" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 1" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 2" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 2" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 3" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 3" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 3" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 4" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 4" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 4" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 4" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 5" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 5" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 5" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 5" class="fa fa-star"></i>
+          <i v-if="product.puntaje === 5" class="fa fa-star"></i>
           <p>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</p>
         </div>
         <p class="is-pulled-right">
@@ -58,7 +65,7 @@
           </div>
            <div class="select is-rounded is-small">
             <select @change="onSelectQuantity(product.id)" v-model="selected">
-              <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
+              <option v-for="quantity in quantityArray" :key="quantity.id">{{ quantity }}</option>
             </select>
           </div>
         </div>
@@ -83,6 +90,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'products',
   props: ['product'],
@@ -90,10 +98,10 @@ export default {
   data () {
     return {
       addToCartLabel: 'Reservar',
-      viewDetailsLabel: 'Details',
-      removeFromCartLabel: 'Remove from cart',
-      addToFavouriteLabel: 'Add to favourite',
-      removeFromFavouriteLabel: 'Remove from favourite',
+      viewDetailsLabel: 'Detalles',
+      removeFromCartLabel: 'Remover del carrito',
+      addToFavouriteLabel: 'Añadir a favoritos',
+      removeFromFavouriteLabel: 'Remover de favoritos',
       selected: 1,
       quantityArray: []
     }

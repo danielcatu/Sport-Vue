@@ -2,7 +2,7 @@
   <div class="section">
     <div class="card is-clearfix columns">
         <figure class="card-image is-480x480 column is-one-thirds">
-          <img src="https://picsum.photos/480/480">
+          <img src="https://www.como.gov/parksandrec/wp-content/uploads/sites/25/2017/03/cosmo_soccer_13-15-300x225.jpg">
         </figure>
         <div class="card-content column is-two-thirds">
           <div class="card-content__title">
@@ -21,8 +21,13 @@
           </div>
           <div class="card-content__text">
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud
+              Cancha el golf
+            </p>
+            <p>
+              Ubicacion: cra 53 #74-126
+            </p>
+            <p>
+              Contamos con duchas, servicio de baño y venta de bebidas.
             </p>
           </div>
           <div class="card-content__ratings" v-if="product.rating === 1">
@@ -56,7 +61,7 @@
             </div>
             <div class="select is-rounded is-small is-pulled-right">
               <select @change="onSelectQuantity(product.id)" v-model="selected">
-                <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
+                <option v-for="quantity in quantityArray" :key="quantity.id">{{ quantity }}</option>
               </select>
             </div>
           </div>
@@ -82,10 +87,10 @@ export default {
   
   data () {
     return {
-      addToCartLabel: 'Add to cart',
-      removeFromCartLabel: 'Remove from cart',
-      addToFavouriteLabel: 'Add to favourite',
-      removeFromFavouriteLabel: 'Remove from favourite',
+      addToCartLabel: 'Añadir al carrito',
+      removeFromCartLabel: 'Remover del carrito',
+      addToFavouriteLabel: 'Agregar a favoritos',
+      removeFromFavouriteLabel: 'Remover de favoritos',
       product: {},
       selected: 1,
       quantityArray: []
