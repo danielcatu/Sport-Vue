@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="columns container">
       <div class="column">
-        <p>Proyecto de Investigación y Desarrollo.<br>Diseño de Software I.</p>
+        <p>Ingeniería de Sistemas y Computación.<br>Diseño de Software I.</p>
       </div>
     <div class="column has-text-right">
       <p>Universidad del Norte | 2019</p>
